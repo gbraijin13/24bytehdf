@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+$font-family:   "Roboto";
+$font-size:     14px;
+
+$color-primary: #ABA194;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+    height: 100vh
+}
+
+.user {
+    width: 90%;
+    max-width: 340px;
+    margin: 10vh auto;
+}
+
+.user__header {
+    text-align: center;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.7s forwards;
+}
+
+.user__title {
+    font-size: $font-size;
+    margin-bottom: -10px;
+    font-weight: 500;
+    color: white;
+}
+
+.form {
+    margin-top: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.9s forwards;
+}
+
+.form--no {
+    animation: NO 1s ease-in-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: $font-family;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    
+    &:focus {
+        background: darken(#fff, 3%);
+    }
+}
+.form__listbox {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: $font-family;
+    -webkit-appearance: listbox;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    
+    &:focus {
+        background: darken(#fff, 3%);
+    }
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: $font-family;
+    -webkit-appearance: none;
+    outline: 0;
+    border: 0;
+    color: black;
+    background: $color-primary;
+    transition: 0.3s;
+    
+    &:hover {
+        background: darken($color-primary, 5%);
+    }
+}
+.form__date {
+  background: #fff
+    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+label {
+  display: block;
+}
+input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: 190px;
+}
+
+@keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
+
+    100% {
+        background-position: 0 0
+    }
+}
+</style>
+</head>
+<body>
+<div class="user">
+    <header class="user__header">
+        <h1 class="user__title">BISCOM INC</h1>
+        <h1 class="user__title">HEALTH DECLARATION FORM</h1>
+    </header>
+    
+    <form class="form" name="HDF_form" action="Insert.php" method="post">
+        <div class="form__group">
+            <input type="text" name="fullname" placeholder="Full Name" class="form__input" />
+        </div>
+        <br>
+        <div class="form__group">
+			<label for="dateofshift" class="user__title">Date of Shift</label> <br>
+            <input type="date" name="dateofshift" placeholder="Date of Shift" class="form__date" />
+        </div>
+        <br>
+        <div class="form__group">
+            <input type="text" name="timeofshift" placeholder="Time of Shift" class="form__input" />
+        </div>
+		
+	<hr> 
+	<h2 class="user__title">Questions:</h2>
+	<br>
+	<hr>
+	<p class="user__title">1. Are you experiencing fever?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q1fever" placeholder="Fever" id="Fever" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+    	<p class="user__title">2. Are you experiencing Cough and/or colds?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q2CandC" placeholder="CandC" id="CandC" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+	    	<p class="user__title">3. Are you experiencing Body pains?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q3Bpains" placeholder="Bpains" id="Bpains" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+		    	<p class="user__title">4. Are you experiencing Sore throat?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q4Sorethroat" placeholder="sore" id="sore" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+		    	<p class="user__title">5. Have you had face-to-face contact with a probabe or confirmed COVID-19 cases 
+				within 1 meter and for more than 15 minutes for the past 14 days?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q5f2f" placeholder="Q5f2f" id="Q5f2f" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+		    	<p class="user__title">6. Have you provided direct care for a patient with
+				probable or confirmed COVID-19 case without using proper PPE for the past 14 days?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q6directcare" placeholder="Q6directcare" id="Q6directcare" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+		    	<p class="user__title">7. Have you travelled outside the Philippines in the last 14 days?</p>
+	<br>
+		<div class="form__group">
+			<select name="Q7travelledPH" placeholder="Q7travelledPH" id="Q7travelledPH" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>
+		    	<p class="user__title">8. Have you travelled outside Binalbagan and current residence in last 7 days? If yes,please specify Address below</p>
+	<br>
+		<div class="form__group">
+			<select name="Q8travelledBin" placeholder="Q8travelledBin" id="Q8travelledBin" class="form__listbox" >
+			<option>Yes</option>
+			<option>No</option>
+			</select>
+        </div>	
+	<br>
+	    <div class="form__group">
+            <input type="text" name="currentaddress" placeholder="Current Residence" class="form__listbox" />
+        </div>
+		<div class="form__group">
+            <input type="text" name="areatravelled" placeholder="Areas Travelled outside Binalbagan" class="form__listbox" />
+        </div>
+		
+		<input type="submit" name="submit" value="Submit" class="btn">
+        
+		
+    </form>
+</div>
+<script>
+const button = document.querySelector(".btn");
+const form = document.querySelector(".form");
+
+button.addEventListener("click", function () {
+    form.classList.add("form--no");
+});
+</script>
